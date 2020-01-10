@@ -1,0 +1,4 @@
+﻿  OS.cpp
+C:\Users\ryohei\Desktop\5年\後期\OS\期末課題\OS_kimatsu-master\OS.cpp(87,29): warning C4474:  'printf': 書式文字列に渡された引数の数が多すぎます
+C:\Users\ryohei\Desktop\5年\後期\OS\期末課題\OS_kimatsu-master\OS.cpp(87,29): message :  プレースホルダーとそのパラメーターには 0 の可変個引数が必要ですが、1 が指定されています。
+  OS_Kimatsu.vcxproj -> C:\Users\ryohei\Desktop\5年\後期\OS\期末課題\OS_kimatsu-master\x64\Debug\OS_Kimatsu.exe

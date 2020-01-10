@@ -1,2 +1,2 @@
-#TargetFrameworkVersion=v4.0:PlatformToolSet=v142:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0
-Debug|x64|C:\Users\ryohei\Desktop\5年\後期\OS\期末課題\OS_kimatsu-master\|
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v120:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit
+Debug|x64|Z:\5年\5CS_OS概論\後期\期末課題\OS_kimatsu\|

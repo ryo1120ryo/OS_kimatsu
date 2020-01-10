@@ -1,17 +1,23 @@
-#include <stdio.h>
-#include <time.h>
-#include <string.h>
+#include "stdio.h"
+#include "math.h"
+#include "float.h"
 
 int main() {
-	FILE *fp;
-
+	FILE* fp;
+	
 	int i, j = 0, t = 0;
 	int select;
-	char output[26][100] = { 0 };
-	char spell;
+	int flag;
+	char output[100] = { 0 };//メモリ
 
+	int kioku;
+	int count_zero;
 	int count = 0;
-	char Alphabet[26];
+	char Alphabet[30] = { 'A', 'B', 'C', 'D', 'E', 'F',
+						  'G', 'H', 'I', 'J', 'K', 'L',
+						  'M', 'N', 'O', 'P', 'Q', 'R',
+						  'S', 'T', 'V', 'W', 'X', 'Y',
+						  'Z' };
 
 	printf("SELECT  1 or 2\n"
 		"1...円周率\n"
@@ -21,20 +27,19 @@ int main() {
 		if (select == 1)
 		{
 			//pi.txt読み込み
-			fopen_s(&fp , "pi.txt", "r");
+			 fopen_s(&fp,"pi.txt", "r");
+		}else{
+			fopen_s(&fp,"route2.txt", "r");
+		}
+
 			if (fp == NULL)
 			{
 				printf("ファイルオープン失敗\n");
 				return -1;
 			}
-			}
-		else
-		{
-			//route2.txt読み込み
-			fopen_s(&fp, "route2.txt", "r");
-		}
-			
-			int input[26] = { 0 };
+		
+			// 配列piで読み込み表示
+			int input[27] = { 0 };
 			while ((input[j] = fgetc(fp)) != EOF)
 			{
 				input[j] = input[j] - 48;
@@ -42,50 +47,85 @@ int main() {
 				j++;
 			}
 
-			printf("\n\n\n");
 
-			for (i = 0; i < 26; i++) // 0 -> 10
-			{ 
+			for ( i = 0; i < 27; i++)
+			{
 				if (input[i]==0)
 				{
 					input[i] = 10;
 				}
 			}
-		
-			for (spell = 'A'; spell <= 'W'; spell++)
-				{
-					Alphabet[j] = spell;
-					printf("%c", Alphabet[j]);
-				}
-				printf("\n");
-
-			for ( i = 0; i < 100; i++) //1行目表示
-			{
-				printf("%d", output[0][i]);
-			}
-
 			printf("\n");
 
-			t = 0;
+			int spell=0;
 
-			while (t< 26)
+		for ( t = 0; t < 27; t+3)
+		{
+			for ( i = 0; i < 101; i++)
 			{
-				t++;
-				printf("\n\n");
-
-				count = input[t];
-
-				
-					for (i = 0; i < count; i++) {
-						output[t][i] = Alphabet[t];
-						printf("%c", output[t][i]);
-					 }
-
-				
-				for (i = count; i < 100; i++)
+				if (output[i] == 0){
+					count_zero++;
+				}
+				else
 				{
-					printf("0", output[t][i]);
+					count_zero = 0;
+				}
+
+				if (count_zero == input[t])
+				{
+					for ( j = input[t]-1; j >= 0; j--)
+					{
+						output[i-j] = Alphabet[t];
+					}
 				}
 			}
-			fclose(fp);
+			
+			
+			for (i = 0; i < 101; i++)
+			{
+				if (output[i] == 0){
+					count_zero++;
+				}
+				else
+				{
+					count_zero = 0;
+				}
+
+				if (count_zero == input[t+1])
+				{
+					kioku = i;
+					for (j = input[t+1] - 1; j >= 0; j--)
+					{
+						output[i - j] = Alphabet[t+1];
+					}
+				}
+			}
+
+
+			for (i = 0; i < 101; i++)
+			{
+				if (output[i] == 0){
+					count_zero++;
+				}
+				else
+				{
+					count_zero = 0;
+				}
+
+				if (count_zero == input[t+2])
+				{
+					for (j = input[t+2] - 1; j >= 0; j--)
+					{
+						output[i - j] = Alphabet[t+2];
+					}
+				}
+			}
+
+			for (j = input[t + 1] - 1; j >= 0; j--)
+			{
+				output[kioku - j] = Alphabet[t + 1];
+			}
+
+		}
+		
 }
